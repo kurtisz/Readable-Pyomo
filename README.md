@@ -6,6 +6,7 @@ An interpretation layer to bring the power of [Pyomo](http://www.pyomo.org/) clo
 * Extensibility to full power of Pyomo / Python <sup>[1](#fullpower)</sup>
 * Open infrastructure for translation to other frameworks
 * Open infrastructure for implementation of other optimization model types
+
 <a id="fullpower">[1]</a> *One of the desirable features of Pyomo is that models can be defined with the full power of Python and libraries like SciPy, among others. Readable Pyomo intends to maintain that benefit, without requiring its use.*
 ## Goals
 This project is intended to be a functional finished product, but since this is a side project, I am also setting some goals for how it should be implemented.
