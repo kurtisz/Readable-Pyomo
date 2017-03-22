@@ -3,7 +3,7 @@ An interpretation layer to bring the power of [Pyomo](http://www.pyomo.org/) clo
 ## Features
 * "Human" syntax for linear programs (LPs)
 * Direct translation to Pyomo models
-* Extensibility to full power of Pyomo / Python <sup>[1](#fullpower)</sup>
+* Extensibility to full power of Pyomo / Python <sup>[1](#user-content-fullpower)</sup>
 * Open infrastructure for translation to other frameworks
 * Open infrastructure for implementation of other optimization model types
 
