@@ -16,7 +16,7 @@ def _build_for_clause(set, model_variable_name, num_indexes, index_map):
 			set.get_name()
 	
 def _concat_for_clauses(sets, model_variable_name, index_map):
-	num_indexes = 0
+	num_indexes = len(index_map)
 	for_clauses = ""
 	for set in sets:
 		for_clauses += _build_for_clause(set, model_variable_name, num_indexes, index_map)

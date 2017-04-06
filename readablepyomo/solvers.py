@@ -5,7 +5,7 @@ from pyomo.environ import Var
 from pyomo.environ import SolverFactory
 from pyomo.environ import Constraint
 from pyomo.environ import minimize, maximize
-from .sets import NonNegativeReals, PositiveIntegers, NonNegativeIntegers
+from .sets import NonNegativeReals, PositiveIntegers, NonNegativeIntegers, Binary
 import pyomo.environ
 from .objective import Objective
 
@@ -42,7 +42,7 @@ class PyomoModelCreator:
 	
 	@staticmethod
 	def _create_pyomo_sets(abstract_model, sets):
-		set_map = {NonNegativeReals: pyomo.environ.NonNegativeReals, PositiveIntegers: pyomo.environ.PositiveIntegers, NonNegativeIntegers: pyomo.environ.NonNegativeIntegers}
+		set_map = {NonNegativeReals: pyomo.environ.NonNegativeReals, PositiveIntegers: pyomo.environ.PositiveIntegers, NonNegativeIntegers: pyomo.environ.NonNegativeIntegers, Binary: pyomo.environ.Binary}
 		i = 0
 		for set in sets:
 			pyomo_set_creator = lambda set : PyomoSet()
@@ -110,6 +110,11 @@ class PyomoModelCreator:
 			i += 1
 		code += ")"
 		return code
+	
+	@staticmethod
+	def testArgs(*args, **kwargs):
+		print(args)
+		print(kwargs)
 		
 	@staticmethod
 	def _create_pyomo_constraint(abstract_model, set_map, parameter_map, variable_map, constraint_comparison, constraint_name):
@@ -119,7 +124,11 @@ class PyomoModelCreator:
 		constraint = None
 		constraint_rule_code = PyomoModelCreator._create_constraint_lambda_signature_code(constraint_comparison, index_map) + " : eval(constraint_code, locals())"
 		constraint_sets_code = PyomoModelCreator._create_constraint_sets_tuple_code(unbound_sets, "abstract_model")
-		constraint = Constraint(eval(constraint_sets_code, locals()), rule = eval(constraint_rule_code, locals()))
+		constraint_sets_tuple = eval(constraint_sets_code, locals())
+		if len(constraint_sets_tuple) > 1:
+			constraint = Constraint(*constraint_sets_tuple, rule = eval(constraint_rule_code, locals()))
+		else:
+			constraint = Constraint(constraint_sets_tuple, rule = eval(constraint_rule_code, locals()))
 		abstract_model.__setattr__(constraint_name, constraint)
 		
 	@staticmethod

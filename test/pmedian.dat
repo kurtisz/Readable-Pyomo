@@ -1,0 +1,28 @@
+set M := A B C;
+set N := Z Y X W V;
+
+param p := 3;
+
+param: d :=
+	Z			1.0
+	Y			1.0
+	X			1.0
+	W			1.0
+	V			1.0;
+	
+param: c :=
+	A		Z		.1
+	A		Y		.2
+	A		X		.35
+	A		W		.2
+	A		V		.1
+	B		Z		.05
+	B		Y		.4
+	B		X		.35
+	B		W		.2
+	B		V		.3
+	C		Z		.2
+	C		Y		.05
+	C		X		.45
+	C		W		.3
+	C		V		.15;
