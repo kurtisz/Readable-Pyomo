@@ -1,0 +1,4 @@
+from .namedindexedrangerestricteditem import NamedIndexedRangeRestrictedItem
+
+class Variable(NamedIndexedRangeRestrictedItem):
+	pass
