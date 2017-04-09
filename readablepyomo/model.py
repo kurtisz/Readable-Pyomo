@@ -1,13 +1,26 @@
 from .objective import Objective
 
 class Model:
+	''' Definition for an RP model that can be translated to a Pyomo model '''
+	
+	@staticmethod
+	def create(sets = [], parameters = [], variables = []):
+		model = Model()
+		model.add_sets(sets)
+		model.add_parameters(parameters)
+		model.add_variables(variables)
+		return model
+		
 	def __init__(self):
 		self.sets = []
 		self.parameters = []
 		self.variables = []
 		self.objective = None
 		self.constraint_comparisons = []
-		pass
+		
+	def _set_objective(self, expression, sense):
+		self.objective = Objective(sense, expression)
+		return self
 		
 	def add_sets(self, setsList):
 		self.sets += setsList
@@ -17,10 +30,6 @@ class Model:
 		
 	def add_variables(self, variablesList):
 		self.variables += variablesList
-		
-	def _set_objective(self, expression, sense):
-		self.objective = Objective(sense, expression)
-		return self
 		
 	def minimize(self, expression):
 		return self._set_objective(expression, Objective.Sense.MINIMIZE)

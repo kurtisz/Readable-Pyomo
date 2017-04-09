@@ -1,4 +1,5 @@
 class RangeRestrictable(object):
+	''' Object which can be restricted to a particular range (e.g. x.within(NonNegativeReals)) '''
 	def __init__(self):
 		self._range = None
 		
