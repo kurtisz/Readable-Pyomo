@@ -1,7 +1,7 @@
 from .util import concatenate
 
 class Indexable(object):
-	''' Object which can be indexed over any number of sets (i.e. x.over(A) '''
+	''' Object which can be indexed over any number of sets (i.e. x.over(A)) '''
 	def __init__(self):
 		self._sets = []
 		

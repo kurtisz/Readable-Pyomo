@@ -5,6 +5,7 @@ _RANGE_INDEX_KEY = "range"
 _DEFAULT_INDEX_KEY = "default"
 
 class PyomoItemCreator(object):
+	''' Helper class for creating various Pyomo items '''
 	@staticmethod
 	def _create_pyomo_item(pyomo_item_creator, pyomo_item_creator_arg):
 		return pyomo_item_creator(pyomo_item_creator_arg)

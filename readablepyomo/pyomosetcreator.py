@@ -3,6 +3,7 @@ from .sets import pyomo_set_map
 from .pyomoitemcreator import PyomoItemCreator
 
 class PyomoSetCreator(object):
+	''' Creator for translating RP sets to Pyomo sets '''
 	@staticmethod
 	def create_pyomo_sets(abstract_model, sets):
 		set_map = pyomo_set_map

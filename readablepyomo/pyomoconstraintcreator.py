@@ -4,6 +4,7 @@ from pyomo.environ import Constraint
 _ABSTRACT_MODEL_VARIABLE_NAME = "model"
 
 class PyomoConstraintCreator(object):
+	''' Creator for translating RP constraints to Pyomo constraints '''
 	@staticmethod
 	def _create_constraint_index_map(unbound_sets):
 		index_map = dict()

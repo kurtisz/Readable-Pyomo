@@ -2,7 +2,8 @@ from .objective import Objective
 from pyomo.environ import Objective as PyomoObjective
 from pyomo.environ import minimize, maximize
 
-class PyomoObjectiveCreator(object):	
+class PyomoObjectiveCreator(object):
+	''' Creator for translating RP objectives to Pyomo objectives '''
 	@staticmethod
 	def _get_pyomo_sense(sense):
 		if sense == Objective.Sense.MINIMIZE:
