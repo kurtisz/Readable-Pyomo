@@ -43,12 +43,14 @@ class PyomoConstraintCreator(object):
 		constraint_sets_tuple = eval(constraint_sets_code, locals())
 		if len(constraint_sets_tuple) > 1:
 			constraint = Constraint(*constraint_sets_tuple, rule = eval(constraint_rule_code, locals()))
-		else:
+		elif len(constraint_sets_tuple) == 1 or not type(constraint_sets_tuple) == type(()):
 			constraint = Constraint(constraint_sets_tuple, rule = eval(constraint_rule_code, locals()))
+		else:
+			constraint = Constraint(rule = eval(constraint_rule_code, locals()))
 		abstract_model.__setattr__(constraint_name, constraint)
 		
 	@staticmethod
-	def _create_pyomo_constraints(abstract_model, set_map, parameter_map, variable_map, constraint_comparisons):
+	def create_pyomo_constraints(abstract_model, set_map, parameter_map, variable_map, constraint_comparisons):
 		constraint_index = 0
 		for constraint_comparison in constraint_comparisons:
 			PyomoConstraintCreator._create_pyomo_constraint(abstract_model, set_map, parameter_map, variable_map, constraint_comparison, "constraint" + str(constraint_index))

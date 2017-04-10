@@ -5,8 +5,11 @@ class Solver:
 	''' Solver for an RP model that passes through to a Pyomo solver '''
 	
 	@staticmethod
-	def solve(solver, model, data_file):
-		return solver.solve(PyomoModelCreator.create_pyomo_model(model, data_file), load_solutions=False)
+	def solve(solver, model, data_file = None):
+		if not data_file is None:
+			return solver.solve(PyomoModelCreator.fill_pyomo_model(model, data_file), load_solutions=False)
+		else:
+			return solver.solve(PyomoModelCreator.create_pyomo_model(model), load_solutions=False)
 		
 	def __init__(self, name):
 		self._name = name
