@@ -72,15 +72,3 @@ class RangeComparison(Evaluatable):
 			
 	def get_unbound_sets(self):
 		return _get_unbound_sets(self.lower) + self.expression.get_unbound_sets() + _get_unbound_sets(self.upper)
-		
-class UpperBoundComparison(Derived, BinaryExpression):
-	def __init__(self, expression, upper_bound):
-		self.super_init(BinaryExpression, expression, "<=", upper_bound)
-		
-class LowerBoundComparison(Derived, BinaryExpression):
-	def __init__(self, expression, lower_bound):
-		self.super_init(BinaryExpression, expression, ">=", lower_bound)
-		
-class EqualityComparison(Derived, BinaryExpression):
-	def __init__(self, expression, value):
-		self.super_init(BinaryExpression, expression, "==", value)
