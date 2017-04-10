@@ -50,6 +50,12 @@ def sum_over(*sets):
 	return create_sum_expression
 	
 class BinaryExpression(Evaluatable):
+	@staticmethod
+	def create_binary_expression_creator(operator):
+		def _create_binary_expression(left, right):
+			return BinaryExpression(left, operator, right)
+		return _create_binary_expression
+
 	def __init__(self, left, operation, right):
 		self.left = left
 		self.operation = operation
